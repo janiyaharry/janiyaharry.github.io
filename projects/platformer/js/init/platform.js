@@ -42,7 +42,7 @@
         createPlatform(820, 490, 0.2); // Second Platform
         createPlatform(280, 440, 0.8, 1,); // Third Platform
         createPlatform(0, 360, 0.3, 1,); // Fourth Platform
-        createPlatform(0, 160, 0.6, 1,); // Fith Platform
+        createPlatform(0, 160, 0.7, 1,); // Fith Platform
         
         
         

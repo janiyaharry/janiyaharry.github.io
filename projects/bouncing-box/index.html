@@ -61,7 +61,7 @@
 			//////////////////////////////////////////////////////////////////
 			
 			// TODO 2 - Variable declarations 
-			
+			var positionX = 0;
 
 			
 			/* 
@@ -70,18 +70,21 @@
 			turn it around! 
 			*/
 			function update() {
-			moveBoxTo(300);	
+				moveBoxTo(positionX);
+			positionX = positionX + 10;
+
 			
 
 			};
 
+			
 			/* 
 			This Function will be called each time the box is clicked. Each time it is called,
 			it should increase the points total, increase the speed, and move the box to
 			the left side of the screen.
 			*/
 			function handleBoxClick() {
-				
+				positionX = 0;
 
 
 			};

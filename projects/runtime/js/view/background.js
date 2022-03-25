@@ -38,7 +38,7 @@ var background = function (window) {
             // TODO: 2 - Part 2
             // this fills the background with a obnoxious yellow
             // you should modify this to suit your game
-            var backgroundFill = draw.rect(canvasWidth,groundY,'#DDDDDD'); // Creates a variable called backgroundFill and store a rectangle that acts as our background
+            var backgroundFill = draw.rect(canvasWidth, groundY, "#6b88fe"); // Creates a variable called backgroundFill and store a rectangle that acts as our background
             background.addChild(backgroundFill); // Adds the background to the canvas so we can see it
             
             // TODO: 3 - Add a moon and starfield
@@ -51,14 +51,14 @@ var background = function (window) {
              }
 
             var moon = draw.bitmap('img/moon.png');// A variable moon that holds the bitmap drawing of the moon
-            moon.x = canvasWidth - 230; // Hold the x value of the moon (left an right)
-            moon.y = groundY - 400; // Holds the y value of moon (up and down)
+            moon.x = canvasWidth - 220; // Hold the x value of the moon (left an right)
+            moon.y = groundY - 600; // Holds the y value of moon (up and down)
             moon.scaleX = 0.4; // Changes the x scale of the moon
             moon.scaleY = 0.4; // Changes the y scale of the moon
             background.addChild(moon); // Add the moon to the background
             
             // TODO 5: Part 1 - Add buildings!     Q: This is before TODO 4 for a reason! Why?
-                
+                /*
                  // Everytime this loop runs, it creates a building with an x and y vlaue and pushes it ot the building array
             
                 for(var i = 0; i < 5; i ++) {
@@ -71,13 +71,15 @@ var background = function (window) {
                 buildings.push(building); // Push the building data to the buildings array and store it as an index
             }
             
+            */
+
             // TODO 4: Part 1 - Add a tree
-            tree = draw.bitmap('img/tree.png');
-            tree.x = canvasWidth - 1000;
-            tree.y = groundY - 250;
+            tree = draw.bitmap('../../../Images/supermariowelcome.png');
+            tree.x = canvasWidth - 0;
+            tree.y = groundY - 550;
             tree.scaleX = 0.7;
             tree.scaleY = 0.7;
-            background.addChild(tree);
+            background.addChild(tree); 
 
         } // end of render function - DO NOT DELETE
         

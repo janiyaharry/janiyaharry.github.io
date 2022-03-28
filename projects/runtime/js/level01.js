@@ -47,7 +47,13 @@ var level01 = function (window) {
             sawBladeHitZone.y = y; // The y value of the hitzone
             game.addGameItem(sawBladeHitZone); // Adds the hitzone to the game
             
-            var obstacleImage = draw.bitmap('img/sawblade.png'); // Draws the image and stores it in the viarble obstacleImagine
+            var obstacleImage = draw.bitmap('../../../Images/spikeobstaclemario.png'); // Draws the image and stores it in the viarble obstacleImagine
+            sawBladeHitZone.addChild(obstacleImage); // Adds the image to the hitzone so we can see it
+            obstacleImage.x = -25; // Lines up the x of the imgage with the hitzone
+            obstacleImage.y = -25; // Lines up the y of the imgage with the hitzone 
+            sawBladeHitZone.rotationalVelocity = 10; // Rotate the enemy image by 10 pixels
+
+            var obstacleImage = draw.bitmap('../../../Images/spikeobstabclemario.png'); // Draws the image and stores it in the viarble obstacleImagine
             sawBladeHitZone.addChild(obstacleImage); // Adds the image to the hitzone so we can see it
             obstacleImage.x = -25; // Lines up the x of the imgage with the hitzone
             obstacleImage.y = -25; // Lines up the y of the imgage with the hitzone 
@@ -55,17 +61,48 @@ var level01 = function (window) {
         }
     
         function createEnemy(x, y){
-            var enemy = game.createGameItem('enemy',25); // Creates the enemy game item and stores it in the varibale enemy
-            var redSquare = draw.rect(50,50,'red'); // Draws a red square and stores it in the variable redSquare
-            redSquare.x = -25; // Align the square hitzone x
-            redSquare.y = -25; // Align the square hitzone y
-            enemy.addChild(redSquare);
+            var enemy = game.createGameItem('enemy',15); // Creates the enemy game item and stores it in the varibale enemy
+            var enemyImage = draw.bitmap('../../../Images/booghostmario.png'); // Draws a Mario Ghost and stores it in the variable enemyImage
+            enemyImage.x = -35; // Align the square hitzone x
+            enemyImage.y = -25; // Align the square hitzone y
+            enemy.addChild(enemyImage);
 
             enemy.x = x;
             enemy.y = y;
+            enemyImage.scaleX = 0.10;
+            enemyImage.scaleY = 0.10;
+            game.addGameItem(enemy);
+            enemy.velocityX = -1; // Move the enemy 1 pixel to the left
+
+
+            var enemy = game.createGameItem('enemy',15); // Creates the enemy game item and stores it in the varibale enemy
+            var enemyImage = draw.bitmap('../../../Images/goombamushroom.png'); // Draws a Mario Mushroom and stores it in the variable enemyImage
+            enemyImage.x = -30; // Align the square hitzone x
+            enemyImage.y = -25; // Align the square hitzone y
+            enemy.addChild(enemyImage);
+
+            enemy.x = x;
+            enemy.y = y;
+            enemyImage.scaleX = 0.08;
+            enemyImage.scaleY = 0.08;
+            game.addGameItem(enemy);
+            enemy.velocityX = -1; // Move the enemy 1 pixel to the left
+
+
+            var enemy = game.createGameItem('enemy',15); // Creates the enemy game item and stores it in the varibale enemy
+            var enemyImage = draw.bitmap('../../../Images/piranhaplantmario.png'); // Draws a Mario Piranha Plant and stores it in the variable enemyImage
+            enemyImage.x = -30; // Align the square hitzone x
+            enemyImage.y = -25; // Align the square hitzone y
+            enemy.addChild(enemyImage);
+
+            enemy.x = x;
+            enemy.y = y;
+            enemyImage.scaleX = 0.08;
+            enemyImage.scaleY = 0.08;
             game.addGameItem(enemy);
             enemy.velocityX = -1; // Move the enemy 1 pixel to the left
             
+
             // This function detects if the enemy collides with Halle and executes health decrease
             enemy.onPlayerCollision = function() {
             game.changeIntegrity(-25) // Decreases your health
@@ -81,16 +118,32 @@ var level01 = function (window) {
         }
 
         function createReward(x, y){
-            var reward = game.createGameItem('reward',25); // Creates the enemy game item and stores it in the varibale enemy
-            var blueSquare = draw.rect(50,50,'blue'); // Draws a red square and stores it in the variable blueSquare
-            blueSquare.x = -25; // Align the square hitzone x
-            blueSquare.y = -25; // Align the square hitzone y
-            reward.addChild(blueSquare);
+            var reward = game.createGameItem('reward',15); // Creates the enemy game item and stores it in the varibale enemy
+            var rewardImage = draw.bitmap('../../../Images/mariocoin.png'); // Draws a red square and stores it in the variable blueSquare
+            rewardImage.x = -20; // Align the square hitzone x
+            rewardImage.y = -20; // Align the square hitzone y
+            reward.addChild(rewardImage);
 
             reward.x = x;
             reward.y = y;
+            rewardImage.scaleX = 0.05;
+            rewardImage.scaleY = 0.05;
             game.addGameItem(reward);
             reward.velocityX = -1; // Move the reward 1 pixel to the left
+
+            
+            var reward = game.createGameItem('reward',15); // Creates the enemy game item and stores it in the varibale enemy
+            var rewardImage = draw.bitmap('../../../Images/mariomushroom.png'); // Draws a red square and stores it in the variable blueSquare
+            rewardImage.x = -20; // Align the square hitzone x
+            rewardImage.y = -20; // Align the square hitzone y
+            reward.addChild(rewardImage);
+
+            reward.x = x;
+            reward.y = y;
+            rewardImage.scaleX = 0.05;
+            rewardImage.scaleY = 0.05;
+            game.addGameItem(reward);
+            reward.velocityX = -1; // Move the reward 1 pixel to the left 
             
             // This function detects if the reward collides with Halle and executes health decrease
             reward.onPlayerCollision = function() {

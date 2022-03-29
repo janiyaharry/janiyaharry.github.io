@@ -16,17 +16,17 @@ var level01 = function (window) {
             "number": 1, 
             "speed": -3,
             "gameItems": [
-                { "type": "sawblade", "x": 400, "y": groundY -50 },
-                { "type": "sawblade", "x": 600, "y": groundY -50 },
                 { "type": "sawblade", "x": 900, "y": groundY -50 },
+                { "type": "sawblade", "x": 1500, "y": groundY -50 },
+                { "type": "sawblade", "x": 2100, "y": groundY -50 },
 
-                { "type": "enemy", "x": 400, "y": groundY -50 },
-                { "type": "enemy", "x": 600, "y": groundY -50 },
-                { "type": "enemy", "x": 900, "y": groundY -50 },
+                { "type": "enemy", "x": 500, "y": groundY -50 },
+                { "type": "enemy", "x": 1000, "y": groundY -50 },
+                { "type": "enemy", "x": 1500, "y": groundY -50 },
 
-                { "type": "reward", "x": 200, "y": groundY -50 },
-                { "type": "reward", "x": 300, "y": groundY -50 },
                 { "type": "reward", "x": 500, "y": groundY -50 },
+                { "type": "reward", "x": 800, "y": groundY -50 },
+                { "type": "reward", "x": 1000, "y": groundY -50 },
                 
             ]
         };
@@ -41,26 +41,32 @@ var level01 = function (window) {
 
         function createSawBlade(x, y){
             var hitZoneSize = 25; //Creates the size of the hitzone
-            var damageFromObstacle = 10; //Setting how much damage the object will inflict
+            var damageFromObstacle = 15; //Setting how much damage the object will inflict
             var sawBladeHitZone = game.createObstacle(hitZoneSize, damageFromObstacle); //Creates the obstable itself
             sawBladeHitZone.x = x; // The x value of the hitzone
             sawBladeHitZone.y = y; // The y value of the hitzone
             game.addGameItem(sawBladeHitZone); // Adds the hitzone to the game
             
-            var obstacleImage = draw.bitmap('../../../Images/spikeobstaclemario.png'); // Draws the image and stores it in the viarble obstacleImagine
+            /*
+            // Pipe Obstacle
+            var obstacleImage = draw.bitmap('../../../Images/pipemario.png'); // Draws the image and stores it in the viarble obstacleImagine
             sawBladeHitZone.addChild(obstacleImage); // Adds the image to the hitzone so we can see it
             obstacleImage.x = -25; // Lines up the x of the imgage with the hitzone
             obstacleImage.y = -25; // Lines up the y of the imgage with the hitzone 
-            sawBladeHitZone.rotationalVelocity = 10; // Rotate the enemy image by 10 pixels
+            sawBladeHitZone.rotationalVelocity = 10; // Rotate the enemy image by 10 pixels */
 
-            var obstacleImage = draw.bitmap('../../../Images/spikeobstabclemario.png'); // Draws the image and stores it in the viarble obstacleImagine
+            
+            // Spike Obstacle
+            var obstacleImage = draw.bitmap('../../../Images/spikemario.png'); // Draws the image and stores it in the viarble obstacleImagine
             sawBladeHitZone.addChild(obstacleImage); // Adds the image to the hitzone so we can see it
-            obstacleImage.x = -25; // Lines up the x of the imgage with the hitzone
+            obstacleImage.x = -105; // Lines up the x of the imgage with the hitzone
             obstacleImage.y = -25; // Lines up the y of the imgage with the hitzone 
-            sawBladeHitZone.rotationalVelocity = 10; // Rotate the enemy image by 10 pixels
+            sawBladeHitZone.rotationalVelocity = 3; // Rotate the enemy image by 10 pixels 
         }
     
         function createEnemy(x, y){
+           
+           //Ghost Enemy
             var enemy = game.createGameItem('enemy',15); // Creates the enemy game item and stores it in the varibale enemy
             var enemyImage = draw.bitmap('../../../Images/booghostmario.png'); // Draws a Mario Ghost and stores it in the variable enemyImage
             enemyImage.x = -35; // Align the square hitzone x
@@ -74,7 +80,9 @@ var level01 = function (window) {
             game.addGameItem(enemy);
             enemy.velocityX = -1; // Move the enemy 1 pixel to the left
 
+            /*
 
+            //Gooma Mushroom Enemy
             var enemy = game.createGameItem('enemy',15); // Creates the enemy game item and stores it in the varibale enemy
             var enemyImage = draw.bitmap('../../../Images/goombamushroom.png'); // Draws a Mario Mushroom and stores it in the variable enemyImage
             enemyImage.x = -30; // Align the square hitzone x
@@ -88,7 +96,7 @@ var level01 = function (window) {
             game.addGameItem(enemy);
             enemy.velocityX = -1; // Move the enemy 1 pixel to the left
 
-
+            // Piranha Plant Enemy
             var enemy = game.createGameItem('enemy',15); // Creates the enemy game item and stores it in the varibale enemy
             var enemyImage = draw.bitmap('../../../Images/piranhaplantmario.png'); // Draws a Mario Piranha Plant and stores it in the variable enemyImage
             enemyImage.x = -30; // Align the square hitzone x
@@ -100,24 +108,28 @@ var level01 = function (window) {
             enemyImage.scaleX = 0.08;
             enemyImage.scaleY = 0.08;
             game.addGameItem(enemy);
-            enemy.velocityX = -1; // Move the enemy 1 pixel to the left
+            enemy.velocityX = -1; // Move the enemy 1 pixel to the left */
             
 
             // This function detects if the enemy collides with Halle and executes health decrease
             enemy.onPlayerCollision = function() {
-            game.changeIntegrity(-25) // Decreases your health
+            game.changeIntegrity(-75) // Decreases your health
             console.log('The enemy has hit Halle');
             enemy.fadeOut();
             };
 
             // This functions detects if the projectile collides with Halle and it will increase the score
             enemy.onProjectileCollision = function(){
-                    game.increaseScore(25);
+                    game.increaseScore(100);
                     enemy.shrink();
             };       
         }
 
         function createReward(x, y){
+            
+            /*
+
+            // Mario Coin Reward
             var reward = game.createGameItem('reward',15); // Creates the enemy game item and stores it in the varibale enemy
             var rewardImage = draw.bitmap('../../../Images/mariocoin.png'); // Draws a red square and stores it in the variable blueSquare
             rewardImage.x = -20; // Align the square hitzone x
@@ -129,14 +141,16 @@ var level01 = function (window) {
             rewardImage.scaleX = 0.05;
             rewardImage.scaleY = 0.05;
             game.addGameItem(reward);
-            reward.velocityX = -1; // Move the reward 1 pixel to the left
+            reward.velocityX = -12; // Move the reward 1 pixel to the left */
 
-            
+            /*
+
+            // Mushroom (red) Reward
             var reward = game.createGameItem('reward',15); // Creates the enemy game item and stores it in the varibale enemy
             var rewardImage = draw.bitmap('../../../Images/mariomushroom.png'); // Draws a red square and stores it in the variable blueSquare
             rewardImage.x = -20; // Align the square hitzone x
             rewardImage.y = -20; // Align the square hitzone y
-            reward.addChild(rewardImage);
+            reward.addChild(rewardImage); */
 
             reward.x = x;
             reward.y = y;
@@ -147,10 +161,10 @@ var level01 = function (window) {
             
             // This function detects if the reward collides with Halle and executes health decrease
             reward.onPlayerCollision = function() {
-                game.changeIntegrity(-25) // Decreases your health
+                game.changeIntegrity(100) // Decreases your health
                 console.log('The reward has hit Halle');
                 reward.fadeOut();
-                game.increaseScore(25);
+                game.increaseScore(50);
             };
 
         

@@ -16,9 +16,13 @@ var level01 = function (window) {
             "number": 1, 
             "speed": -3,
             "gameItems": [
-                { "type": "sawblade", "x": 900, "y": groundY -50 },
-                { "type": "sawblade", "x": 1500, "y": groundY -50 },
-                { "type": "sawblade", "x": 2100, "y": groundY -50 },
+                { "type": "sawblade", "x": 900, "y": groundY -250 },
+                { "type": "sawblade", "x": 1500, "y": groundY -250 },
+                { "type": "sawblade", "x": 2100, "y": groundY -250 },
+
+                { "type": "pipe", "x": 1200, "y": groundY -20 },
+                { "type": "pipe", "x": 1700, "y": groundY -20 },
+                { "type": "pipe", "x": 2200, "y": groundY -20 },
 
                 { "type": "enemy", "x": 500, "y": groundY -50 },
                 { "type": "enemy", "x": 1000, "y": groundY -50 },
@@ -46,22 +50,34 @@ var level01 = function (window) {
             sawBladeHitZone.x = x; // The x value of the hitzone
             sawBladeHitZone.y = y; // The y value of the hitzone
             game.addGameItem(sawBladeHitZone); // Adds the hitzone to the game
-            
-            /*
-            // Pipe Obstacle
-            var obstacleImage = draw.bitmap('../../../Images/pipemario.png'); // Draws the image and stores it in the viarble obstacleImagine
-            sawBladeHitZone.addChild(obstacleImage); // Adds the image to the hitzone so we can see it
-            obstacleImage.x = -25; // Lines up the x of the imgage with the hitzone
-            obstacleImage.y = -25; // Lines up the y of the imgage with the hitzone 
-            sawBladeHitZone.rotationalVelocity = 10; // Rotate the enemy image by 10 pixels */
-
-            
+          
             // Spike Obstacle
             var obstacleImage = draw.bitmap('../../../Images/spikemario.png'); // Draws the image and stores it in the viarble obstacleImagine
             sawBladeHitZone.addChild(obstacleImage); // Adds the image to the hitzone so we can see it
             obstacleImage.x = -105; // Lines up the x of the imgage with the hitzone
-            obstacleImage.y = -25; // Lines up the y of the imgage with the hitzone 
+            obstacleImage.y = -150; // Lines up the y of the imgage with the hitzone 
             sawBladeHitZone.rotationalVelocity = 3; // Rotate the enemy image by 10 pixels 
+            obstacleImage.scaleX = 0.5;
+            obstacleImage.scaleY = 0.5;
+
+        }
+
+        function createPipe(x, y){
+            var hitZoneSize = 25; //Creates the size of the hitzone
+            var damageFromObstacle = 15; //Setting how much damage the object will inflict
+            var pipeHitZone = game.createObstacle(hitZoneSize, damageFromObstacle); //Creates the obstable itself
+            pipeHitZone.x = x; // The x value of the hitzone
+            pipeHitZone.y = y; // The y value of the hitzone
+            game.addGameItem(pipeHitZone); // Adds the hitzone to the game
+          
+            // Spike Obstacle
+            var obstacleImage = draw.bitmap('../../../Images/pipemario.png'); // Draws the image and stores it in the viarble obstacleImagine
+            pipeHitZone.addChild(obstacleImage); // Adds the image to the hitzone so we can see it
+            obstacleImage.x = -25; // Lines up the x of the imgage with the hitzone
+            obstacleImage.y = -25; // Lines up the y of the imgage with the hitzone  
+            obstacleImage.scaleX = 0.2;
+            obstacleImage.scaleY = 0.2;
+
         }
     
         function createEnemy(x, y){
@@ -82,19 +98,6 @@ var level01 = function (window) {
 
             /*
 
-            //Gooma Mushroom Enemy
-            var enemy = game.createGameItem('enemy',15); // Creates the enemy game item and stores it in the varibale enemy
-            var enemyImage = draw.bitmap('../../../Images/goombamushroom.png'); // Draws a Mario Mushroom and stores it in the variable enemyImage
-            enemyImage.x = -30; // Align the square hitzone x
-            enemyImage.y = -25; // Align the square hitzone y
-            enemy.addChild(enemyImage);
-
-            enemy.x = x;
-            enemy.y = y;
-            enemyImage.scaleX = 0.08;
-            enemyImage.scaleY = 0.08;
-            game.addGameItem(enemy);
-            enemy.velocityX = -1; // Move the enemy 1 pixel to the left
 
             // Piranha Plant Enemy
             var enemy = game.createGameItem('enemy',15); // Creates the enemy game item and stores it in the varibale enemy
@@ -143,21 +146,7 @@ var level01 = function (window) {
             game.addGameItem(reward);
             reward.velocityX = -12; // Move the reward 1 pixel to the left */
 
-            /*
-
-            // Mushroom (red) Reward
-            var reward = game.createGameItem('reward',15); // Creates the enemy game item and stores it in the varibale enemy
-            var rewardImage = draw.bitmap('../../../Images/mariomushroom.png'); // Draws a red square and stores it in the variable blueSquare
-            rewardImage.x = -20; // Align the square hitzone x
-            rewardImage.y = -20; // Align the square hitzone y
-            reward.addChild(rewardImage); */
-
-            reward.x = x;
-            reward.y = y;
-            rewardImage.scaleX = 0.05;
-            rewardImage.scaleY = 0.05;
-            game.addGameItem(reward);
-            reward.velocityX = -1; // Move the reward 1 pixel to the left 
+         
             
             // This function detects if the reward collides with Halle and executes health decrease
             reward.onPlayerCollision = function() {
@@ -186,6 +175,10 @@ var level01 = function (window) {
 
             if (gameItem.type === "reward"){
                 createReward(gameItem.x, gameItem.y);
+            }
+
+            if (gameItem.type === "pipe"){
+                createPipe(gameItem.x, gameItem.y);
             }
 
         }
